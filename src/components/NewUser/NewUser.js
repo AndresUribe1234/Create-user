@@ -41,11 +41,15 @@ function NewUser(props) {
       <form onSubmit={addNewUserHandler}>
         <div>
           <label>Username</label>
-          <input onChange={usernameValueHandler} value={username}></input>
+          <input
+            onChange={usernameValueHandler}
+            value={username}
+            type={"text"}
+          ></input>
         </div>
         <div>
           <label>Age (Years)</label>
-          <input onChange={ageValueHandler} value={age}></input>
+          <input onChange={ageValueHandler} value={age} type={"number"}></input>
         </div>
         <button type="submit">Add User</button>
         {activeModal && (
