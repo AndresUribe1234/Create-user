@@ -3,7 +3,6 @@ import NewUser from "./components/NewUser/NewUser";
 
 import { useState } from "react";
 import Users from "./components/Users/Users";
-import FormErrors from "./components/NewUser/FormErrors";
 
 const usersInit = [];
 
