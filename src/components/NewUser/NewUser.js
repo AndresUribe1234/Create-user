@@ -1,5 +1,7 @@
+import Card from "./../UI/Card";
 import { useState } from "react";
 import FormErrors from "./FormErrors";
+import "./NewUser.scss";
 
 function NewUser(props) {
   const [username, setUsername] = useState("");
@@ -11,11 +13,15 @@ function NewUser(props) {
     event.preventDefault();
     if (username.trim().length === 0 || age.trim().length === 0) {
       setActiveModal(true);
-      setErrorMessage("You must enter the name of the user and its age");
+      setErrorMessage(
+        "You must enter the name of the user and its age in order to submit a new user"
+      );
       return;
     }
     const newUser = { username, age, id: Math.random() };
     props.onAddUser(newUser);
+    setUsername("");
+    setAge("");
   };
 
   const usernameValueHandler = function (event) {
@@ -31,20 +37,22 @@ function NewUser(props) {
   };
 
   return (
-    <form onSubmit={addNewUserHandler}>
-      <div>
-        <label>Username</label>
-        <input onChange={usernameValueHandler}></input>
-      </div>
-      <div>
-        <label>Age (Years)</label>
-        <input onChange={ageValueHandler}></input>
-      </div>
-      <button type="submit">Add User</button>
-      {activeModal && (
-        <FormErrors error={errorMessage} onCloseModal={closeModalHandler} />
-      )}
-    </form>
+    <Card className="input">
+      <form onSubmit={addNewUserHandler}>
+        <div>
+          <label>Username</label>
+          <input onChange={usernameValueHandler} value={username}></input>
+        </div>
+        <div>
+          <label>Age (Years)</label>
+          <input onChange={ageValueHandler} value={age}></input>
+        </div>
+        <button type="submit">Add User</button>
+        {activeModal && (
+          <FormErrors error={errorMessage} onCloseModal={closeModalHandler} />
+        )}
+      </form>
+    </Card>
   );
 }
 
