@@ -1,6 +1,8 @@
 import "./FormErrors.scss";
+import ReactDom from "react-dom";
+import React from "react";
 
-const FormErrors = function (props) {
+const ErrorModal = (props) => {
   function example(event) {
     if (event.target.className === "modal") {
       props.onCloseModal();
@@ -13,6 +15,17 @@ const FormErrors = function (props) {
         <button onClick={props.onCloseModal}>Close</button>
       </div>
     </div>
+  );
+};
+
+const FormErrors = function (props) {
+  return (
+    <React.Fragment>
+      {ReactDom.createPortal(
+        <ErrorModal onCloseModal={props.onCloseModal} error={props.error} />,
+        document.getElementById("errorModal")
+      )}
+    </React.Fragment>
   );
 };
 

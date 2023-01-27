@@ -8,6 +8,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
 
   .modal-container {
     width: 400px;
@@ -26,6 +27,10 @@
     button {
       @extend %btn;
       margin-top: 10px;
+    }
+
+    p {
+      text-align: center;
     }
   }
 }
